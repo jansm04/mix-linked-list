@@ -41,21 +41,17 @@ void Chain::Insert(int data) {
 *  Splits an even-length linked list into two, then mixes the two lists back to front
 *  Example: 
 *   Input:  1 <-> 2 <-> 3 <-> 11 <-> 12 <-> 13
-*   Output: 2 <-> 13 <-> 2 <-> 12 <-> 1 <-> 11
+*   Output: 3 <-> 13 <-> 2 <-> 12 <-> 1 <-> 11
 */
 void Chain::Mix() {
     // base case
-    if (length == 0 || length & 1 == 1) return;
+    if (length == 0) return;
     // traverse to middle node
     Node *fast = head, *slow = head;
     while (fast && fast->next) {
         fast = fast->next->next;
         slow = slow->next;
     }
-    // split list into two lists
-    Node *prev = slow->prev;
-    prev->next = nullptr;
-    slow->prev = nullptr;
 
     Node *curr1 = head, *curr2 = slow;
     // reassign tail pointer
